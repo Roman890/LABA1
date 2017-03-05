@@ -128,7 +128,6 @@ class Coder
     int symvol[128];
     char* letter[3];
     char finalTable[128];
-    int baseKod, deep, indent;
     ifstream f1;
     ofstream f2;
 public:

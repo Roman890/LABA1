@@ -156,10 +156,7 @@ public:
         // деструктор
         ~Coder()
         {
-                for (int j = 0; j < 4; j++)
-                {
-                        delete[] letter[j];
-                }
+                for (int j = 0; j < 4; j++){delete[] letter[j];}
         }
         // читаем файл
         void read()
@@ -173,11 +170,7 @@ public:
                 while (!f1.eof())
                 {
                         f1 >> c;
-                        cout << c << " ";
-                        if (c >= 128) {
-                                ++symvol[c - 128];
-
-                        }
+                        if (c >= 128) {++symvol[c - 128];}
                 }
                 f1.close();
         }
@@ -191,8 +184,6 @@ public:
                         if (symvol[max] < symvol[i]) max = i;
                 }
                 letter[0][0] = max+128;
-                cout << max << endl;
-                cout << "\n"<< (int)letter[0][0] << endl;
                 return ;
         }
         // перекодируем символ во все возможные кодировки
@@ -201,7 +192,6 @@ public:
                 int max = 1;
                         for (int i = 1; i < 4; i++)
                         {
-
                                 for (int j = 0; j < max; j++)
                                 {
                                         letter [i][j * 6 + 0] = Cp1251ToCp866[letter[i-1][j] - 128];
@@ -224,30 +214,30 @@ public:
                         {
                                 if (cp1251_O == letter[i][j])
                                 {
-                                        cout << i << j << endl;
-                                        cout << " File in coder page 1251 " << endl;
                                         changefile(i, j);
+                                        cout << "CP1251" << endl;
+                                        cout << "Change code" << endl;
                                         return;
                                 }
                                 if (cp866_O == letter[i][j])
                                 {
-                                        cout << i << j << endl;
-                                        cout << " File in coder page 866 " << endl;
                                         changefile(i, j);
+                                        cout << "CP866" << endl;
+                                        cout << "Change code" << endl;
                                         return;
                                 }
                                 if (koi8_O == letter[i][j])
                                 {
-                                        cout << i << j << endl;
-                                        cout << " File in coder page koir " << endl;
                                         changefile(i, j);
+                                        cout << "koi8r" << endl;
+                                        cout << "Change code" << endl;
                                         return;
                                 }
                         }
                         max = max * 6;
                 }
-
         }
+
         void changefile(int deep, int width)
         {
                 unsigned char finalTabel[128];
@@ -282,7 +272,6 @@ public:
                 }
                 while (!f1.eof())
                 {
-
                         f1.get(t);
                         c = (unsigned char)t;
                         if (c >= 128)
@@ -295,7 +284,6 @@ public:
                 f2.close();
         }
 };
-
 int main()
 {
         Coder d;
@@ -305,5 +293,7 @@ int main()
         d.findcorrect();
         return 0;
 }
+
+
 
 
